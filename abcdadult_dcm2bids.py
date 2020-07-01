@@ -12,11 +12,12 @@ bids_dir = join(dat_dir, 'BIDS_unprocessed')
 
 config_fn = join(base_dir, 'resources', 'abcdadult_dcm2bids.conf')
 
-#dcm2bids = True  # set to False if bids conversion already ran, do fmaps only
-#sub = sys.argv[1]
-#session = sys.argv[2]
-
 def run_dcm2bids(sub=None, session=None):
+    '''
+    run dcm2bids
+    sub     : e.g., NDARABCD_ses1
+    session : e.g., ses-01
+    '''
 
     ndar = str.split(sub, '_')[0]
 
@@ -31,6 +32,13 @@ def run_dcm2bids(sub=None, session=None):
     call(cmd, shell=True)
 
 def add_intendedfor(sub=None, session=None):
+    '''
+    adds intended for field to func jsons
+    searches for corresponding field maps occuring closest in time
+    sub     : e.g., NDARABCD
+    session : e.g., ses-01
+
+    '''
 
     ndar = str.split(sub, '_')[0]
 
